@@ -1,0 +1,7 @@
+.idea/
+node_modules
+.project
+.sonar
+*.iml
+coverage
+reports

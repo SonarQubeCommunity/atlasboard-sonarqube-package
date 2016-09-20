@@ -1,0 +1,24 @@
+{
+  "layout": {
+    "title": false,
+    "customJS": [],
+    "widgets": [{
+      "enabled": true,
+      "row": 1,
+      "col": 1,
+      "width": 2,
+      "height": 2,
+      "widget": "qg-filter",
+      "job": "qg-filter",
+      "config": "qg-filter"
+    }
+    ]
+  },
+  "config": {
+    "qg-filter": {
+      "interval": 180000,
+      "widgetTitle": "Quality Gates failure",
+      "credentials": "sonarqube"
+    }
+  }
+}  

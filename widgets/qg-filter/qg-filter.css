@@ -1,0 +1,65 @@
+.countRed {
+    width: 100%;
+    font-size: 80px;
+    font-weight: bold;
+    color: #B72F28;
+}
+
+.countRedSmall {
+    width: 100%;
+    display: inline;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #B72F28;
+}
+
+.countGreen {
+    width: 100%;
+    font-size: 80px;
+    font-weight: bold;
+    color: forestgreen;
+}
+
+
+.title {
+    height: 100%;
+    padding-left: 20px;
+    display: inline;
+    font-size: 40px;
+    color: gray;
+}
+
+.metric {
+    height: 100%;
+    padding-left: 5px;
+    display: inline;
+    font-size: 20px;
+    color: gray;
+}
+
+.status {
+    width: 100%;
+    overflow: hidden;
+}
+
+.statusName {
+    width: 100%;
+
+    padding: 2px;
+    padding-left: 10px;
+    text-align: left;
+    overflow: hidden;
+
+    background-color: #B72F28;
+    border: solid;
+    border-color: #181818;
+    border-width: 5px;
+    border-radius: 10px;
+
+    font-size: 40px;
+    font-weight: bold;
+
+    color: white;
+}
+
