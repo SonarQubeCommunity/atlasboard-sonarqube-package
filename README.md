@@ -1,1 +1,0 @@
-# atlasboard-sonarqube-package
