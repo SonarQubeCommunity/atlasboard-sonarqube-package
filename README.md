@@ -1,6 +1,10 @@
 Atlasboard SonarQube Package
 ============================
 
+Atlasboard jobs and widgets for querying and displaying SonarQube on a dashboard.
+
+Widget available, display of the red quality gates:
+
 ![Screenshot](screenshot.jpg)
 
 ## License
@@ -11,7 +15,7 @@ Licensed under the [GNU Lesser General Public License, Version 3.0](http://www.g
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/SonarSource/atlasboard-sonarqube-package.svg?branch=master)](https://travis-ci.org/SonarSource/atlasboard-sonarqube-package)
+[![Build Status](https://travis-ci.org/SonarQubeCommunity/atlasboard-sonarqube-package.svg?branch=master)](https://travis-ci.org/SonarQubeCommunity/atlasboard-sonarqube-package)
 
 ## Installation
 
@@ -55,6 +59,6 @@ In your dashboard definition:
 ## Contributions
 
 * forum: https://groups.google.com/forum/#!forum/sonarqube
-* raise a bug, propose a new feature: https://github.com/SonarSource/atlasboard-sonarqube-package/issues
+* raise a bug, propose a new feature: https://github.com/SonarQubeCommunity/atlasboard-sonarqube-package/issues
 * run the test: `npm test`
 * compute the coverage: `npm run coverage`
