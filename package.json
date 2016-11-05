@@ -9,7 +9,6 @@
   "engines": {
     "node": ">=5.7.1"
   },
-
   "keywords": [
     "atlasboard",
     "sonarqube"
@@ -18,11 +17,13 @@
   "license": "LGPL-3.0",
   "homepage": "https://github.com/SonarQubeCommunity/atlasboard-sonarqube-package#readme",
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
     "istanbul": "^0.4.3",
     "jquery": "^3.1.0",
     "jsdom": "^9.4.1",
     "mocha": "2.3.3",
-    "gulp": "^3.9.1",
     "sonarqube-scanner": "0.4.0"
   },
   "dependencies": {

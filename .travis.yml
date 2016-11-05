@@ -10,8 +10,6 @@ install:
 before_script:
   # Need Gulp to trigger the analysis on SonarQube.com
   - npm install -g gulp
-  # And mocha for the tests
-  - npm install -g mocha
 
 script:
   # Actually calls Gulp - the SonarQube analysis is the default task
