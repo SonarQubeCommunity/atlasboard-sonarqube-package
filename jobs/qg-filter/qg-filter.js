@@ -116,7 +116,7 @@ function fetchProjectsMeasures(config, dependencies, projects) {
     function queryOneProject(resolve, reject, projectIndex) {
         if (projectIndex < projects.length) {
             const path = util.format(
-                '/api/measures/component_tree?baseComponentKey=%s' +
+                '/api/measures/component?componentKey=%s' +
                 '&metricKeys=quality_gate_details,alert_status,last_commit_date',
                 projects[projectIndex].k);
             const options = computeRequestOptionsForSQ(config, path);
@@ -132,7 +132,7 @@ function fetchProjectsMeasures(config, dependencies, projects) {
                             const bodyObj = JSON.parse(body);
 
                             // enrich existing project object
-                            projects[projectIndex].measures = bodyObj.baseComponent.measures;
+                            projects[projectIndex].measures = bodyObj.component.measures;
 
                             // recursion
                             queryOneProject(resolve, reject, projectIndex + 1);
