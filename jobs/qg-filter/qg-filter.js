@@ -81,9 +81,9 @@ function fetchListOfProjects(config, dependencies) {
                 if (err) {
                 	reject(err);
                 } else if (!response) {
-                    reject(new Error('Bad response'));
+                    reject(new Error('Bad response from %s', options.url));
                 } else if (response.statusCode !== 200) {
-                    reject(new Error(util.format('Bad status %s', response.statusCode)));
+                    reject(new Error(util.format('Bad status %s from %s', response.statusCode, options.url)));
                 } else {
                     try {
                         const bodyObj = JSON.parse(body);
@@ -122,11 +122,11 @@ function fetchProjectsMeasures(config, dependencies, projects) {
             const options = computeRequestOptionsForSQ(config, path);
             dependencies.request(options, function (err, response, body) {
                     if (err) {
-                        reject(err)
+                        reject(err);
                     } else if (!response) {
-                        reject(new Error('Bad response'));
+                        reject(new Error('Bad response from %s', options.url));
                     } else if (response.statusCode !== 200) {
-                        reject(new Error(util.format('Bad status %s', response.statusCode)));
+                        reject(new Error(util.format('Bad status %s from %s', response.statusCode, options.url)));
                     } else {
                         try {
                             const bodyObj = JSON.parse(body);
