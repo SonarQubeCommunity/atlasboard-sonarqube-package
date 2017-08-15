@@ -1,13 +1,13 @@
 {
   "name": "atlasboard-sonarqube-package",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "SonarQube package for Atlasboard",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SonarQubeCommunity/atlasboard-sonarqube-package.git"
   },
   "engines": {
-    "node": ">=5.7.1"
+    "node": ">=6.11.2"
   },
   "keywords": [
     "atlasboard",
@@ -19,15 +19,15 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-istanbul": "^1.1.1",
-    "gulp-mocha": "^3.0.1",
+    "gulp-mocha": "^4.3.1",
     "istanbul": "^0.4.3",
     "jquery": "^3.1.0",
-    "jsdom": "^9.4.1",
-    "mocha": "2.3.3",
-    "sonarqube-scanner": "0.4.0"
+    "jsdom": "^11.1.0",
+    "mocha": "3.5.0",
+    "sonarqube-scanner": "2.0.1"
   },
   "dependencies": {
-    "atlasboard": "~1.0.1"
+    "atlasboard": "~1.1.3"
   },
   "scripts": {
     "test": "mocha --recursive jobs widgets",
