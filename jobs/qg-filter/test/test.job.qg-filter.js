@@ -132,7 +132,7 @@ describe('qg-filter', function() {
       });
 
 
-      it('should report 1 failed QG', function(done) {
+      it('should report 2 failed QG', function(done) {
 
         qgFilter.onInit(config, dependencies);
         qgFilter.onRun(config, dependencies, function job_callback(errMsg, data) {
@@ -210,10 +210,94 @@ describe('qg-filter', function() {
     });
 
     describe('sonarQube >= 6.4', function() {
+      it('should report no failed QG', function(done) {
+
+        // query measures
+        dependencies.bodyResponses.push(JSON.stringify({
+          "component": {
+            "id": "AV3X_wnRbZsMImgxuRpf",
+            "key": "atlasboard-sonarqube-package",
+            "name": "atlasboard-sonarqube-package",
+            "qualifier": "TRK",
+            "measures": [{
+              "metric": "alert_status",
+              "value": "OK"
+            }, {
+              "metric": "quality_gate_details",
+              "value": "{\"level\":\"OK\",\"conditions\":[]}"
+            }, {
+              "metric": "last_commit_date",
+              "value": "1474401060000"
+            }]
+          }
+        }));
+
+        // list projects
+        dependencies.bodyResponses.push(JSON.stringify([{
+          "id": 1,
+          "k": "atlasboard-sonarqube-package",
+          "nm": "atlasboard-sonarqube-package",
+          "sc": "PRJ",
+          "qu": "TRK"
+        }]));
+
+        // /api/system/version
+        dependencies.bodyResponses.push(
+          "6.4.0.0"
+        );
+
+        qgFilter.onInit(config, dependencies);
+        qgFilter.onRun(config, dependencies, function job_callback(errMsg, data) {
+
+          assert.strictEqual(errMsg, null);
+
+          assert.strictEqual(data.title, config.widgetTitle);
+          assert(Array.isArray(data.projects));
+          assert.strictEqual(data.projects.length, 0);
+
+          done();
+        });
+      });
 
       it('should report 1 failed QG', function(done) {
-          // TODO
+
+        // query measures
+        dependencies.bodyResponses.push(JSON.stringify({
+          "component": {
+            id: 'AV3X_wnRbZsMImgxuRpf',
+            key: "atlasboard-sonarqube-package",
+            name: "atlasboard-sonarqube-package",
+            qualifier: "TRK",
+            measures: [{
+                metric: 'quality_gate_details',
+                value: '{\n  "level": "ERROR",\n  "conditions": [\n    {\n      "metric": "new_sqale_debt_ratio",\n      "op": "GT",\n      "period": 1,\n      "warning": "",\n      "error": "5",\n      "actual": "0.0",\n      "level": "OK"\n    },\n    {\n      "metric": "reopened_issues",\n      "op": "GT",\n      "period": 1,\n      "warning": "0",\n      "error": "",\n      "actual": "0",\n      "level": "OK"\n    },\n    {\n      "metric": "open_issues",\n      "op": "GT",\n      "period": 1,\n      "warning": "0",\n      "error": "",\n      "actual": "9",\n      "level": "WARN"\n    },\n    {\n      "metric": "skipped_tests",\n      "op": "GT",\n      "period": 1,\n      "warning": "0",\n      "error": "",\n      "actual": "0",\n      "level": "OK"\n    },\n    {\n      "metric": "new_bugs",\n      "op": "GT",\n      "period": 1,\n      "warning": "",\n      "error": "1",\n      "actual": "1",\n      "level": "ERROR"\n    },\n    {\n      "metric": "new_vulnerabilities",\n      "op": "GT",\n      "period": 1,\n      "warning": "",\n      "error": "0",\n      "actual": "0",\n      "level": "OK"\n    }\n  ]\n}'
+              }, {
+                metric: 'last_commit_date',
+                value: '1464600985000',
+                comment: '2016-05-30T09:36:25Z'
+              },
+              {
+                metric: 'alert_status',
+                value: 'ERROR'
+              }
+            ]
+          }
+        }));
+
+        // list projects
+        dependencies.bodyResponses.push(JSON.stringify([{
+          "id": 1,
+          "k": "atlasboard-sonarqube-package",
+          "nm": "atlasboard-sonarqube-package",
+          "sc": "PRJ",
+          "qu": "TRK"
+        }]));
+
+        // /api/system/version
+        dependencies.bodyResponses.push(
+          "6.4.0.0"
         );
+        done();
       });
     });
   });

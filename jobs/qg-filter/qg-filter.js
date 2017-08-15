@@ -108,13 +108,16 @@ module.exports.fetchProjectsMeasures = fetchProjectsMeasures;
 function fetchProjectsMeasures(config, dependencies, sqVersion, projects) {
 
   let measureQuery;
+  let measureComponentField;
   if(  sqVersion.major > 6
     || sqVersion.major === 6 && sqVersion.minor >= 4 )  {
     measureQuery = '/api/measures/component?componentKey=%s' +
     '&metricKeys=quality_gate_details,alert_status,last_commit_date'
+    measureComponentField = 'component';
   } else{
     measureQuery = '/api/measures/component_tree?baseComponentKey=%s' +
     '&metricKeys=quality_gate_details,alert_status,last_commit_date'
+    measureComponentField = 'baseComponent';
   }
 
   // synch with a promise and recursion
@@ -142,7 +145,7 @@ function fetchProjectsMeasures(config, dependencies, sqVersion, projects) {
             const bodyObj = JSON.parse(body);
 
             // enrich existing project object
-            projects[projectIndex].measures = bodyObj.baseComponent.measures;
+            projects[projectIndex].measures = bodyObj[measureComponentField].measures;
 
             // recursion
             queryOneProject(resolve, reject, projectIndex + 1);
