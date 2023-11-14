@@ -1,13 +1,20 @@
+
+
 Atlasboard SonarQube Package
 ============================
 
-[![Build status](https://travis-ci.org/SonarQubeCommunity/atlasboard-sonarqube-package.svg?branch=master)](https://travis-ci.org/SonarQubeCommunity/atlasboard-sonarqube-package) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=atlasboard-sonarqube-package)](https://sonarqube.com/dashboard/index/atlasboard-sonarqube-package)
+## End of life
+
+This project is no more active
+
+## Description
 
 Atlasboard jobs and widgets for querying and displaying SonarQube on a dashboard.
 
 Widget available, display of the red quality gates:
 
 ![Screenshot](screenshot.jpg)
+
 
 ## License
 
