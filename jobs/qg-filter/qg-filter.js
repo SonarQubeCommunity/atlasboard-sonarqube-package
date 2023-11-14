@@ -81,9 +81,9 @@ function fetchListOfProjects(config, dependencies) {
                 if (err) {
                 	reject(err);
                 } else if (!response) {
-                    reject(new Error('Bad response'));
+                    reject(new Error('Bad response from %s', options.url));
                 } else if (response.statusCode !== 200) {
-                    reject(new Error(util.format('Bad status %s', response.statusCode)));
+                    reject(new Error(util.format('Bad status %s from %s', response.statusCode, options.url)));
                 } else {
                     try {
                         const bodyObj = JSON.parse(body);
@@ -116,23 +116,23 @@ function fetchProjectsMeasures(config, dependencies, projects) {
     function queryOneProject(resolve, reject, projectIndex) {
         if (projectIndex < projects.length) {
             const path = util.format(
-                '/api/measures/component_tree?baseComponentKey=%s' +
+                '/api/measures/component?componentKey=%s' +
                 '&metricKeys=quality_gate_details,alert_status,last_commit_date',
                 projects[projectIndex].k);
             const options = computeRequestOptionsForSQ(config, path);
             dependencies.request(options, function (err, response, body) {
                     if (err) {
-                        reject(err)
+                        reject(err);
                     } else if (!response) {
-                        reject(new Error('Bad response'));
+                        reject(new Error('Bad response from %s', options.url));
                     } else if (response.statusCode !== 200) {
-                        reject(new Error(util.format('Bad status %s', response.statusCode)));
+                        reject(new Error(util.format('Bad status %s from %s', response.statusCode, options.url)));
                     } else {
                         try {
                             const bodyObj = JSON.parse(body);
 
                             // enrich existing project object
-                            projects[projectIndex].measures = bodyObj.baseComponent.measures;
+                            projects[projectIndex].measures = bodyObj.component.measures;
 
                             // recursion
                             queryOneProject(resolve, reject, projectIndex + 1);
